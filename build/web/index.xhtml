@@ -8,23 +8,48 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:inputText value="#{student.name}" />
-            <h:inputText value="#{student.address}" />
-            <h:inputText value="#{student.phone}" />
-            <h:inputText value="#{student.depart}" />
-            
-            <h:selectOneMenu value="#{student.course}" id="course" valueChangeListener="#{student.courseChangeListener}" onchange="submit()">
-                <f:selectItems value="#{student.courseMap.keySet()}" var="course" />
-            </h:selectOneMenu>
-            
-            <h:selectOneMenu id="subject" readonly="true" >
-                <f:selectItems value="#{student.subjects}" var="subject" />
-            </h:selectOneMenu>
-            
-            <h:commandButton value="submit" action="#{service.add(student)}" />
+            <table>
+                <tr>
+                    <td><h:outputText value="Name"/></td>
+                    <td><h:inputText value="#{student.name}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Address"/></td>
+                    <td><h:inputText value="#{student.address}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Phone"/></td>
+                    <td><h:inputText value="#{student.phone}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Department"/></td>
+                    <td><h:inputText value="#{student.depart}" /></td>
+                </tr>
+                <tr>
+                    <td><h:outputText value="Course"/></td>
+                    <td>
+                        <h:selectOneMenu value="#{student.course}" id="course" valueChangeListener="#{student.courseChangeListener}" onchange="submit()">
+                            <f:selectItems value="#{student.courseMap.keySet()}" var="course" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><h:outputText value="Subjects"/></td>
+                    <td>
+                        <h:selectOneMenu id="subject" readonly="true" >
+                            <f:selectItems value="#{student.subjects}" var="subject" />
+                        </h:selectOneMenu>
+                    </td>
+                </tr>
+                
+                <tr>
+                    <td><h:commandButton value="submit" action="#{service.add(student)}" /></td>  
+                </tr>
+            </table>
         </h:form>
-        
-        
+
+
         <h:dataTable value="#{service.studentList}" var="s">
             <h:column><f:facet name="header">Name</f:facet><h:outputText value="#{s.name}"/></h:column>
             <h:column><f:facet name="header">Address</f:facet><h:outputText value="#{s.address}"/></h:column>
@@ -34,7 +59,7 @@
             <h:column><f:facet name="header">Subjects</f:facet><h:outputText value="#{s.subjects}"/></h:column>
             <h:column><f:facet name="header">Action</f:facet><h:form><h:commandLink action="#{service.delete(s)}" value="delete" /></h:form></h:column>
         </h:dataTable>
-        
+
     </h:body>
 </html>
 
