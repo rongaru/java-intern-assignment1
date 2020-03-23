@@ -42,7 +42,7 @@
                         </h:selectOneMenu>
                     </td>
                 </tr>
-                
+
                 <tr>
                     <td><h:commandButton value="submit" action="#{service.add(student)}" /></td>  
                 </tr>
@@ -50,14 +50,18 @@
         </h:form>
 
 
-        <h:dataTable value="#{service.studentList}" var="s">
+        <h:dataTable value="#{service.students}" var="s" border="1">
             <h:column><f:facet name="header">Name</f:facet><h:outputText value="#{s.name}"/></h:column>
             <h:column><f:facet name="header">Address</f:facet><h:outputText value="#{s.address}"/></h:column>
             <h:column><f:facet name="header">Phone</f:facet><h:outputText value="#{s.phone}"/></h:column>
             <h:column><f:facet name="header">Department</f:facet><h:outputText value="#{s.depart}"/></h:column>
             <h:column><f:facet name="header">Course</f:facet><h:outputText value="#{s.course}"/></h:column>
             <h:column><f:facet name="header">Subjects</f:facet><h:outputText value="#{s.subjects}"/></h:column>
-            <h:column><f:facet name="header">Action</f:facet><h:form><h:commandLink action="#{service.delete(s)}" value="delete" /></h:form></h:column>
+            <h:column><f:facet name="header">Action</f:facet>
+                <h:form><h:commandLink action="#{s.view()}" value="view" />
+                    <h:commandLink action="#{service.delete(s)}" value="delete" /></h:form>
+
+            </h:column>
         </h:dataTable>
 
     </h:body>
